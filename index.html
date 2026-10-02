@@ -1,0 +1,906 @@
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cricket Lovers — The #1 Telegram Channel for Live Cricket</title>
+<meta name="description" content="Join Cricket Lovers on Telegram for live scores, ball-by-ball updates, expert predictions and a community of 100K+ cricket fans.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          tg: { light: '#2AABEE', DEFAULT: '#229ED9', dark: '#1c8ac9', deep: '#0f2739' },
+          ink: { 950: '#04080f', 900: '#070d17', 800: '#0b1422', 700: '#111d2e', 600: '#1a2940' }
+        },
+        fontFamily: { sans: ['Plus Jakarta Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+        boxShadow: {
+          glow: '0 0 60px -12px rgba(42,171,238,.65)',
+          soft: '0 20px 60px -20px rgba(0,0,0,.75)'
+        }
+      }
+    }
+  }
+</script>
+<style>
+  *{ -webkit-tap-highlight-color: transparent; }
+  html,body{ background:#04080f; }
+  body{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    color:#cbd5e1;
+    overflow-x:hidden;
+  }
+  ::selection{ background:#229ED9; color:#fff; }
+
+  /* ---------- scrollbar ---------- */
+  ::-webkit-scrollbar{ width:10px; }
+  ::-webkit-scrollbar-track{ background:#070d17; }
+  ::-webkit-scrollbar-thumb{ background:#1a2940; border-radius:99px; }
+  ::-webkit-scrollbar-thumb:hover{ background:#229ED9; }
+
+  /* ---------- background aurora ---------- */
+  .aurora{
+    position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;
+  }
+  .blob{
+    position:absolute; border-radius:50%; filter:blur(90px); opacity:.5;
+    animation:drift 22s ease-in-out infinite alternate;
+  }
+  .blob.b1{ width:520px; height:520px; background:#229ED9; top:-180px; left:-140px; }
+  .blob.b2{ width:460px; height:460px; background:#7c3aed; top:35%; right:-180px; animation-delay:-6s; }
+  .blob.b3{ width:420px; height:420px; background:#06b6d4; bottom:-160px; left:25%; animation-delay:-12s; opacity:.35; }
+  @keyframes drift{
+    0%{ transform:translate3d(0,0,0) scale(1); }
+    100%{ transform:translate3d(60px,-50px,0) scale(1.15); }
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* ---------- glass card ---------- */
+  .glass{
+    background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(14px);
+  }
+  .card-hover{ transition:transform .45s cubic-bezier(.2,.7,.2,1), border-color .45s, box-shadow .45s; }
+  .card-hover:hover{
+    transform:translateY(-8px);
+    border-color:rgba(42,171,238,.55);
+    box-shadow:0 28px 60px -30px rgba(42,171,238,.75);
+  }
+
+  /* ---------- gradient text ---------- */
+  .grad-text{
+    background:linear-gradient(100deg,#2AABEE 0%,#67e8f9 45%,#a78bfa 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+
+  /* ---------- buttons ---------- */
+  .btn-primary{
+    position:relative; overflow:hidden;
+    background:linear-gradient(100deg,#2AABEE,#1c8ac9 55%,#229ED9);
+    box-shadow:0 14px 40px -14px rgba(42,171,238,.9);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-3px); box-shadow:0 22px 55px -14px rgba(42,171,238,1); }
+  .btn-primary::after{
+    content:''; position:absolute; top:0; left:-120%; width:60%; height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);
+    transform:skewX(-20deg); animation:sheen 3.6s ease-in-out infinite;
+  }
+  @keyframes sheen{ 0%{left:-120%} 55%{left:130%} 100%{left:130%} }
+
+  .btn-ghost{ transition:background .3s, border-color .3s, transform .3s; }
+  .btn-ghost:hover{ background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.28); transform:translateY(-3px); }
+
+  /* ---------- phone mockup ---------- */
+  .phone{
+    position:relative;
+    width:100%; max-width:340px; margin-inline:auto;
+    border-radius:44px; padding:12px;
+    background:linear-gradient(155deg,#22304a,#0a1220 60%);
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 50px 120px -40px rgba(42,171,238,.55), 0 0 0 1px rgba(255,255,255,.04) inset;
+    animation:float 6.5s ease-in-out infinite;
+  }
+  @keyframes float{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+  .phone-screen{
+    border-radius:34px; overflow:hidden; background:#0b1422;
+    border:1px solid rgba(255,255,255,.06);
+  }
+  .chat-msg{ opacity:0; transform:translateY(14px) scale(.97); animation:pop .6s cubic-bezier(.2,.8,.3,1) forwards; }
+  @keyframes pop{ to{ opacity:1; transform:none; } }
+  .bubble-in{ background:#182b3f; border-radius:18px 18px 18px 5px; }
+  .bubble-out{ background:linear-gradient(135deg,#2AABEE,#1c8ac9); border-radius:18px 18px 5px 18px; }
+
+  /* ---------- ticker ---------- */
+  .ticker-track{ display:flex; width:max-content; animation:scroll 34s linear infinite; }
+  @keyframes scroll{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .ticker-wrap:hover .ticker-track{ animation-play-state:paused; }
+
+  /* ---------- pulse dot ---------- */
+  .pulse-dot{ position:relative; }
+  .pulse-dot::before{
+    content:''; position:absolute; inset:0; border-radius:50%; background:#22c55e;
+    animation:ripple 1.8s ease-out infinite;
+  }
+  @keyframes ripple{ 0%{transform:scale(1);opacity:.8} 100%{transform:scale(3);opacity:0} }
+
+  /* ---------- faq ---------- */
+  .faq-panel{ max-height:0; overflow:hidden; transition:max-height .45s cubic-bezier(.2,.7,.2,1), opacity .35s; opacity:0; }
+  .faq-item.open .faq-panel{ opacity:1; }
+  .faq-item.open .faq-icon{ transform:rotate(45deg); background:#229ED9; border-color:#229ED9; color:#fff; }
+  .faq-icon{ transition:transform .35s ease, background .35s, color .35s, border-color .35s; }
+
+  /* ---------- nav ---------- */
+  .nav-scrolled{ background:rgba(4,8,15,.82); backdrop-filter:blur(16px); border-color:rgba(255,255,255,.09); }
+
+  /* ---------- marquee gradient edge ---------- */
+  .fade-x{ mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  }
+</style>
+</head>
+<body class="relative antialiased">
+
+<!-- ================= BACKGROUND ================= -->
+<div class="aurora" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+<div class="fixed inset-0 z-0 pointer-events-none" style="background-image:radial-gradient(rgba(255,255,255,.045) 1px, transparent 1px); background-size:34px 34px;"></div>
+
+<!-- ================= NAV ================= -->
+<header id="navbar" class="fixed top-0 inset-x-0 z-50 border-b border-transparent transition-all duration-300">
+  <nav class="max-w-7xl mx-auto px-5 sm:px-8 h-[72px] flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3 group">
+      <span class="relative grid place-items-center w-10 h-10 rounded-2xl bg-gradient-to-br from-tg-light to-tg-dark shadow-glow">
+        <svg viewBox="0 0 24 24" class="w-5 h-5 text-white" fill="currentColor"><path d="M21.94 4.3 18.9 19.1c-.23 1.02-.84 1.27-1.7.79l-4.7-3.46-2.27 2.18c-.25.25-.46.46-.94.46l.34-4.8 8.72-7.88c.38-.34-.08-.53-.59-.19L6.98 12.8 2.3 11.34c-1.02-.32-1.04-1.02.21-1.51l17.8-6.86c.85-.32 1.6.2 1.63 1.33Z"/></svg>
+      </span>
+      <span class="leading-tight">
+        <span class="block text-white font-extrabold tracking-tight">Cricket Lovers</span>
+        <span class="block text-[11px] text-slate-400 font-medium tracking-wide">Telegram Channel</span>
+      </span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-1 text-sm font-semibold">
+      <a href="#features" class="nav-link px-4 py-2 rounded-full text-slate-300 hover:text-white hover:bg-white/5 transition">Features</a>
+      <a href="#inside" class="nav-link px-4 py-2 rounded-full text-slate-300 hover:text-white hover:bg-white/5 transition">Inside</a>
+      <a href="#reviews" class="nav-link px-4 py-2 rounded-full text-slate-300 hover:text-white hover:bg-white/5 transition">Reviews</a>
+      <a href="#faq" class="nav-link px-4 py-2 rounded-full text-slate-300 hover:text-white hover:bg-white/5 transition">FAQ</a>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <a href="https://t.me/Cricketloverstg" target="_blank" rel="noopener"
+         class="hidden sm:inline-flex btn-primary text-white text-sm font-bold px-5 py-2.5 rounded-full items-center gap-2">
+        Join Channel
+        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button id="menuBtn" aria-label="Open menu" class="md:hidden grid place-items-center w-10 h-10 rounded-xl glass text-white">
+        <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- mobile menu -->
+  <div id="mobileMenu" class="md:hidden overflow-hidden max-h-0 transition-all duration-500 ease-out border-t border-white/5 bg-ink-900/95 backdrop-blur-xl">
+    <div class="px-5 py-5 flex flex-col gap-1 text-sm font-semibold">
+      <a href="#features" class="mob-link px-4 py-3 rounded-xl text-slate-300 hover:bg-white/5 hover:text-white transition">Features</a>
+      <a href="#inside" class="mob-link px-4 py-3 rounded-xl text-slate-300 hover:bg-white/5 hover:text-white transition">Inside the Channel</a>
+      <a href="#reviews" class="mob-link px-4 py-3 rounded-xl text-slate-300 hover:bg-white/5 hover:text-white transition">Reviews</a>
+      <a href="#faq" class="mob-link px-4 py-3 rounded-xl text-slate-300 hover:bg-white/5 hover:text-white transition">FAQ</a>
+      <a href="https://t.me/Cricketloverstg" target="_blank" rel="noopener" class="mt-2 btn-primary text-white font-bold px-5 py-3.5 rounded-xl text-center">Join @Cricketloverstg</a>
+    </div>
+  </div>
+</header>
+
+<main id="top" class="relative z-10">
+
+  <!-- ================= HERO ================= -->
+  <section class="relative pt-32 sm:pt-40 pb-16 sm:pb-24">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-[1.05fr_.95fr] gap-14 lg:gap-10 items-center">
+
+      <!-- left -->
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2.5 glass rounded-full pl-2.5 pr-4 py-1.5 mb-7">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="pulse-dot absolute inset-0 rounded-full bg-green-500"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+          </span>
+          <span class="text-xs font-bold tracking-wide text-slate-200">LIVE · 120K+ cricket fans already inside</span>
+        </div>
+
+        <h1 class="text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-[4.1rem] font-extrabold text-white tracking-tight">
+          Never miss a<br class="hidden sm:block">
+          <span class="grad-text">single ball</span> again.
+        </h1>
+
+        <p class="mt-6 text-base sm:text-lg text-slate-400 max-w-xl leading-relaxed">
+          Instant scores, ball-by-ball commentary, pitch reports and expert match predictions — delivered straight to your Telegram, free forever.
+        </p>
+
+        <div class="mt-9 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+          <a href="https://t.me/Cricketloverstg" target="_blank" rel="noopener"
+             class="btn-primary text-white font-bold px-7 py-4 rounded-2xl inline-flex items-center justify-center gap-2.5 text-[15px]">
+            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"><path d="M21.94 4.3 18.9 19.1c-.23 1.02-.84 1.27-1.7.79l-4.7-3.46-2.27 2.18c-.25.25-.46.46-.94.46l.34-4.8 8.72-7.88c.38-.34-.08-.53-.59-.19L6.98 12.8 2.3 11.34c-1.02-.32-1.04-1.02.21-1.51l17.8-6.86c.85-.32 1.6.2 1.63 1.33Z"/></svg>
+            Join @Cricketloverstg
+          </a>
+          <button id="copyBtn"
+             class="btn-ghost glass text-slate-200 font-bold px-7 py-4 rounded-2xl inline-flex items-center justify-center gap-2.5 text-[15px] border border-white/10">
+            <svg viewBox="0 0 24 24" class="w-4.5 h-4.5" style="width:18px;height:18px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span id="copyLabel">Copy invite link</span>
+          </button>
+        </div>
+
+        <div class="mt-9 flex flex-wrap items-center gap-x-7 gap-y-3 text-[13px] text-slate-500 font-medium">
+          <span class="inline-flex items-center gap-2"><svg viewBox="0 0 24 24" class="w-4 h-4 text-tg-light" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>100% free</span>
+          <span class="inline-flex items-center gap-2"><svg viewBox="0 0 24 24" class="w-4 h-4 text-tg-light" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No spam, ever</span>
+          <span class="inline-flex items-center gap-2"><svg viewBox="0 0 24 24" class="w-4 h-4 text-tg-light" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>One-tap join</span>
+        </div>
+      </div>
+
+      <!-- right: phone -->
+      <div class="reveal" style="transition-delay:.15s">
+        <div class="relative">
+          <div class="absolute -inset-10 rounded-full pointer-events-none" style="background:radial-gradient(circle at 50% 50%, rgba(42,171,238,.28), transparent 65%);"></div>
+
+          <div class="phone">
+            <div class="phone-screen">
+              <!-- chat header -->
+              <div class="flex items-center gap-3 px-4 py-3.5 border-b border-white/5 bg-ink-800/90">
+                <svg viewBox="0 0 24 24" class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                <div class="relative">
+                  <div class="w-10 h-10 rounded-full bg-gradient-to-br from-tg-light to-tg-dark grid place-items-center text-lg">🏏</div>
+                  <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-green-500 border-2 border-ink-800"></span>
+                </div>
+                <div class="leading-tight flex-1 min-w-0">
+                  <p class="text-white text-sm font-bold truncate">Cricket Lovers</p>
+                  <p class="text-[11px] text-tg-light font-semibold">124,802 subscribers</p>
+                </div>
+                <svg viewBox="0 0 24 24" class="w-5 h-5 text-slate-500" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg>
+              </div>
+
+              <!-- chat body -->
+              <div class="px-4 py-5 space-y-3.5 min-h-[380px] bg-[linear-gradient(180deg,#0b1422,#081120)]">
+                <div class="text-center chat-msg" style="animation-delay:.1s">
+                  <span class="inline-block text-[10px] font-bold text-slate-500 bg-white/5 px-3 py-1 rounded-full tracking-wide">TODAY</span>
+                </div>
+
+                <div class="chat-msg max-w-[86%]" style="animation-delay:.35s">
+                  <div class="bubble-in px-3.5 py-2.5 text-[13px] text-slate-200 leading-snug">
+                    🏏 <b class="text-white">IND vs AUS</b> — Toss in 10 minutes!<br>
+                    <span class="text-slate-400">India won the toss & elected to bat.</span>
+                  </div>
+                  <div class="flex items-center gap-1 mt-1 pl-1">
+                    <span class="text-[10px] bg-white/8 px-1.5 py-0.5 rounded-full">👍 412</span>
+                    <span class="text-[10px] bg-white/8 px-1.5 py-0.5 rounded-full">🔥 289</span>
+                  </div>
+                </div>
+
+                <div class="chat-msg max-w-[86%]" style="animation-delay:.75s">
+                  <div class="bubble-in px-3.5 py-2.5 text-[13px] text-slate-200 leading-snug">
+                    ⚡ <b class="text-white">Over 6.4</b> — SIX! Kohli goes downtown 🚀<br>
+                    <span class="text-slate-400">IND 62/1 · CRR 9.30</span>
+                  </div>
+                </div>
+
+                <div class="chat-msg ml-auto max-w-[80%]" style="animation-delay:1.15s">
+                  <div class="bubble-out px-3.5 py-2.5 text-[13px] text-white leading-snug">
+                    Prediction sent to all members ✅
+                  </div>
+                </div>
+
+                <div class="chat-msg max-w-[86%]" style="animation-delay:1.55s">
+                  <div class="bubble-in px-3.5 py-2.5 text-[13px] text-slate-200 leading-snug">
+                    📊 <b class="text-white">Pitch Report:</b> Fresh surface, 180+ is par. Spinners will matter in the middle overs.
+                  </div>
+                </div>
+
+                <div class="chat-msg flex justify-center pt-1" style="animation-delay:1.95s">
+                  <span class="text-[11px] font-bold text-tg-light bg-tg-light/10 border border-tg-light/25 px-3.5 py-1.5 rounded-full inline-flex items-center gap-1.5">
+                    <svg viewBox="0 0 24 24" class="w-3 h-3" fill="currentColor"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg>
+                    Live commentary running…
+                  </span>
+                </div>
+              </div>
+
+              <!-- input bar -->
+              <div class="flex items-center gap-2 px-3 py-3 border-t border-white/5 bg-ink-800/90">
+                <div class="flex-1 bg-white/5 rounded-full px-4 py-2.5 text-[12px] text-slate-500">Message the channel…</div>
+                <div class="w-9 h-9 rounded-full bg-gradient-to-br from-tg-light to-tg-dark grid place-items-center">
+                  <svg viewBox="0 0 24 24" class="w-4 h-4 text-white" fill="currentColor"><path d="M2 21 23 12 2 3v7l15 2-15 2v7Z"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- floating badges -->
+          <div class="hidden sm:flex absolute -left-6 top-24 glass rounded-2xl px-4 py-3 items-center gap-3 shadow-soft" style="animation:float 7s ease-in-out infinite .6s">
+            <span class="grid place-items-center w-9 h-9 rounded-xl bg-green-500/15 text-green-400">📈</span>
+            <span class="leading-tight">
+              <span class="block text-white text-sm font-extrabold">Ball-by-ball</span>
+              <span class="block text-[11px] text-slate-400">Zero delay updates</span>
+            </span>
+          </div>
+          <div class="hidden sm:flex absolute -right-4 bottom-28 glass rounded-2xl px-4 py-3 items-center gap-3 shadow-soft" style="animation:float 7s ease-in-out infinite 1.4s">
+            <span class="grid place-items-center w-9 h-9 rounded-xl bg-tg-light/15 text-tg-light">🎯</span>
+            <span class="leading-tight">
+              <span class="block text-white text-sm font-extrabold">78% accuracy</span>
+              <span class="block text-[11px] text-slate-400">Expert predictions</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TICKER ================= -->
+  <section class="relative border-y border-white/5 bg-ink-900/60 py-4 overflow-hidden ticker-wrap">
+    <div class="fade-x">
+      <div class="ticker-track gap-10 text-[13px] font-semibold text-slate-400 whitespace-nowrap" id="tickerTrack">
+        <!-- populated by JS (duplicated) -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STATS ================= -->
+  <section class="relative py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div class="reveal glass rounded-3xl p-6 sm:p-7 card-hover">
+          <p class="text-3xl sm:text-4xl font-extrabold text-white"><span class="counter" data-target="124" data-suffix="K+">0</span></p>
+          <p class="mt-2 text-[13px] text-slate-400 font-medium">Active subscribers</p>
+        </div>
+        <div class="reveal glass rounded-3xl p-6 sm:p-7 card-hover" style="transition-delay:.1s">
+          <p class="text-3xl sm:text-4xl font-extrabold text-white"><span class="counter" data-target="3600" data-suffix="+">0</span></p>
+          <p class="mt-2 text-[13px] text-slate-400 font-medium">Matches covered</p>
+        </div>
+        <div class="reveal glass rounded-3xl p-6 sm:p-7 card-hover" style="transition-delay:.2s">
+          <p class="text-3xl sm:text-4xl font-extrabold text-white"><span class="counter" data-target="24" data-suffix="/7">0</span></p>
+          <p class="mt-2 text-[13px] text-slate-400 font-medium">Live coverage</p>
+        </div>
+        <div class="reveal glass rounded-3xl p-6 sm:p-7 card-hover" style="transition-delay:.3s">
+          <p class="text-3xl sm:text-4xl font-extrabold text-white"><span class="counter" data-target="78" data-suffix="%">0</span></p>
+          <p class="mt-2 text-[13px] text-slate-400 font-medium">Prediction accuracy</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FEATURES ================= -->
+  <section id="features" class="relative py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="max-w-2xl mx-auto text-center reveal">
+        <span class="inline-block text-xs font-extrabold tracking-[.2em] text-tg-light uppercase mb-4">What you get</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          Everything a cricket fan needs,<br class="hidden sm:block"> in <span class="grad-text">one channel</span>.
+        </h2>
+        <p class="mt-5 text-slate-400 text-base leading-relaxed">
+          We built Cricket Lovers for people who hate missing the moment. Fast, clean and completely clutter-free.
+        </p>
+      </div>
+
+      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+
+        <div class="reveal glass rounded-3xl p-7 card-hover">
+          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-tg-light/12 text-2xl">⚡</span>
+          <h3 class="mt-5 text-lg font-bold text-white">Instant Live Scores</h3>
+          <p class="mt-2.5 text-[14px] text-slate-400 leading-relaxed">Ball-by-ball updates pushed the second they happen. No refreshing, no delay, no ads in your way.</p>
+        </div>
+
+        <div class="reveal glass rounded-3xl p-7 card-hover" style="transition-delay:.08s">
+          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-violet-500/12 text-2xl">🎯</span>
+          <h3 class="mt-5 text-lg font-bold text-white">Expert Predictions</h3>
+          <p class="mt-2.5 text-[14px] text-slate-400 leading-relaxed">Match winners, top performers and session calls backed by real data — not gut feeling.</p>
+        </div>
+
+        <div class="reveal glass rounded-3xl p-7 card-hover" style="transition-delay:.16s">
+          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-emerald-500/12 text-2xl">📊</span>
+          <h3 class="mt-5 text-lg font-bold text-white">Deep Match Stats</h3>
+          <p class="mt-2.5 text-[14px] text-slate-400 leading-relaxed">Head-to-head records, pitch reports, weather and player form — all summarised before the first ball.</p>
+        </div>
+
+        <div class="reveal glass rounded-3xl p-7 card-hover" style="transition-delay:.24s">
+          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-amber-500/12 text-2xl">📅</span>
+          <h3 class="mt-5 text-lg font-bold text-white">Full Fixture Alerts</h3>
+          <p class="mt-2.5 text-[14px] text-slate-400 leading-relaxed">Never wonder "when's the next match?" — schedules for every series, league and tournament.</p>
+        </div>
+
+        <div class="reveal glass rounded-3xl p-7 card-hover" style="transition-delay:.32s">
+          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-rose-500/12 text-2xl">💬</span>
+          <h3 class="mt-5 text-lg font-bold text-white">Real Fan Community</h3>
+          <p class="mt-2.5 text-[14px] text-slate-400 leading-relaxed">Celebrate sixes, argue about DRS and share memes with 100K+ fans who love the game as much as you do.</p>
+        </div>
+
+        <div class="reveal glass rounded-3xl p-7 card-hover" style="transition-delay:.4s">
+          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-sky-500/12 text-2xl">🔕</span>
+          <h3 class="mt-5 text-lg font-bold text-white">Zero Noise</h3>
+          <p class="mt-2.5 text-[14px] text-slate-400 leading-relaxed">Only cricket. No forwarded spam, no random promotions — just the updates you actually subscribed for.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INSIDE THE CHANNEL ================= -->
+  <section id="inside" class="relative py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-14 lg:gap-16 items-center">
+
+      <div class="reveal order-2 lg:order-1">
+        <span class="inline-block text-xs font-extrabold tracking-[.2em] text-tg-light uppercase mb-4">Inside the channel</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">Your match-day routine, upgraded.</h2>
+        <p class="mt-5 text-slate-400 text-base leading-relaxed max-w-lg">
+          From the toss to the final wicket, here's what lands in your Telegram on a typical match day.
+        </p>
+
+        <ul class="mt-9 space-y-4">
+          <li class="flex gap-4 items-start">
+            <span class="mt-0.5 grid place-items-center w-7 h-7 rounded-lg bg-tg-light/15 text-tg-light shrink-0">
+              <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            <div>
+              <p class="font-bold text-white text-[15px]">Pre-match briefing</p>
+              <p class="text-slate-400 text-sm mt-0.5">Playing XI, toss result, pitch report and pitch-side weather.</p>
+            </div>
+          </li>
+          <li class="flex gap-4 items-start">
+            <span class="mt-0.5 grid place-items-center w-7 h-7 rounded-lg bg-tg-light/15 text-tg-light shrink-0">
+              <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            <div>
+              <p class="font-bold text-white text-[15px]">Live over-by-over commentary</p>
+              <p class="text-slate-400 text-sm mt-0.5">Wickets, boundaries and turning points the moment they happen.</p>
+            </div>
+          </li>
+          <li class="flex gap-4 items-start">
+            <span class="mt-0.5 grid place-items-center w-7 h-7 rounded-lg bg-tg-light/15 text-tg-light shrink-0">
+              <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            <div>
+              <p class="font-bold text-white text-[15px]">Post-match analysis</p>
+              <p class="text-slate-400 text-sm mt-0.5">Scorecards, key stats and what went wrong (or very right).</p>
+            </div>
+          </li>
+        </ul>
+
+        <a href="https://t.me/Cricketloverstg" target="_blank" rel="noopener"
+           class="mt-9 inline-flex btn-primary text-white font-bold px-7 py-3.5 rounded-2xl items-center gap-2.5 text-[15px]">
+          Open in Telegram
+          <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="reveal order-1 lg:order-2" style="transition-delay:.12s">
+        <div class="grid grid-cols-2 gap-4 sm:gap-5">
+          <div class="glass rounded-3xl p-5 smooth card-hover">
+            <p class="text-[11px] font-extrabold uppercase tracking-widest text-slate-500">Over 14.3</p>
+            <p class="mt-3 text-white font-bold text-sm leading-snug">WICKET! Caught at deep midwicket 🧤</p>
+            <p class="mt-2 text-[12px] text-slate-400">IND 118/4 · Need 74 off 34</p>
+          </div>
+          <div class="glass rounded-3xl p-5 card-hover">
+            <p class="text-[11px] font-extrabold uppercase tracking-widest text-slate-500">Prediction</p>
+            <p class="mt-3 text-white font-bold text-sm leading-snug">India to win by 3 wickets 🏆</p>
+            <p class="mt-2 text-[12px] text-emerald-400 font-semibold">Set at toss · 78% hit rate</p>
+          </div>
+          <div class="glass rounded-3xl p-5 col-span-2 card-hover">
+            <div class="flex items-center justify-between">
+              <p class="text-[11px] font-extrabold uppercase tracking-widest text-slate-500">Series schedule</p>
+              <span class="text-[10px] font-bold text-tg-light bg-tg-light/10 px-2 py-1 rounded-full">3 UPCOMING</span>
+            </div>
+            <div class="mt-4 space-y-3">
+              <div class="flex items-center justify-between text-[13px]">
+                <span class="text-slate-300 font-semibold">IND vs AUS · 2nd ODI</span>
+                <span class="text-slate-500">Tomorrow</span>
+              </div>
+              <div class="h-px bg-white/5"></div>
+              <div class="flex items-center justify-between text-[13px]">
+                <span class="text-slate-300 font-semibold">PAK vs ENG · T20</span>
+                <span class="text-slate-500">Fri, 7:30 PM</span>
+              </div>
+              <div class="h-px bg-white/5"></div>
+              <div class="flex items-center justify-between text-[13px]">
+                <span class="text-slate-300 font-semibold">IPL Qualifier 1</span>
+                <span class="text-slate-500">Sat, 8:00 PM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= REVIEWS ================= -->
+  <section id="reviews" class="relative py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="max-w-2xl mx-auto text-center reveal">
+        <span class="inline-block text-xs font-extrabold tracking-[.2em] text-tg-light uppercase mb-4">Fan reviews</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Loved by fans worldwide</h2>
+      </div>
+
+      <div class="mt-14 grid md:grid-cols-3 gap-5 sm:gap-6">
+
+        <div class="reveal glass rounded-3xl p-7 card-hover">
+          <div class="flex gap-1 text-amber-400 text-sm">★★★★★</div>
+          <p class="mt-5 text-slate-300 text-[15px] leading-relaxed">
+            "I stopped opening 5 different apps. Everything I need is right here in Telegram, and it's genuinely faster than the streaming feed."
+          </p>
+          <div class="mt-6 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-tg-light to-tg-dark grid place-items-center text-white font-bold text-sm">A</div>
+            <div>
+              <p class="text-white font-bold text-sm">Arjun M.</p>
+              <p class="text-slate-500 text-xs">Member since 2022</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal glass rounded-3xl p-7 card-hover" style="transition-delay:.1s">
+          <div class="flex gap-1 text-amber-400 text-sm">★★★★★</div>
+          <p class="mt-5 text-slate-300 text-[15px] leading-relaxed">
+            "The prediction accuracy is honestly absurd. The pre-match briefings alone are worth more than any paid subscription I've tried."
+          </p>
+          <div class="mt-6 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 grid place-items-center text-white font-bold text-sm">S</div>
+            <div>
+              <p class="text-white font-bold text-sm">Sana R.</p>
+              <p class="text-slate-500 text-xs">Member since 2023</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal glass rounded-3xl p-7 card-hover" style="transition-delay:.2s">
+          <div class="flex gap-1 text-amber-400 text-sm">★★★★★</div>
+          <p class="mt-5 text-slate-300 text-[15px] leading-relaxed">
+            "Finally a channel with zero spam. Just cricket, clean and on time. The community chat during matches is the best part."
+          </p>
+          <div class="mt-6 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 grid place-items-center text-white font-bold text-sm">D</div>
+            <div>
+              <p class="text-white font-bold text-sm">Dev P.</p>
+              <p class="text-slate-500 text-xs">Member since 2021</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section id="faq" class="relative py-16 sm:py-24">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8">
+      <div class="text-center reveal">
+        <span class="inline-block text-xs font-extrabold tracking-[.2em] text-tg-light uppercase mb-4">FAQ</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Questions, answered</h2>
+      </div>
+
+      <div class="mt-12 space-y-3.5" id="faqList">
+
+        <div class="faq-item reveal glass rounded-2xl overflow-hidden">
+          <button class="faq-trigger w-full flex items-center justify-between gap-4 text-left px-6 py-5">
+            <span class="text-white font-bold text-[15px] sm:text-base">Is joining the channel really free?</span>
+            <span class="faq-icon grid place-items-center w-7 h-7 rounded-full border border-white/15 text-slate-300 shrink-0">
+              <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="faq-panel px-6">
+            <p class="pb-5 text-slate-400 text-[14px] leading-relaxed">
+              Yes — completely. There's no subscription fee, no hidden charge and no need to share payment details. Just tap the invite link and you're in.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal glass rounded-2xl overflow-hidden" style="transition-delay:.06s">
+          <button class="faq-trigger w-full flex items-center justify-between gap-4 text-left px-6 py-5">
+            <span class="text-white font-bold text-[15px] sm:text-base">Do I need the Telegram app?</span>
+            <span class="faq-icon grid place-items-center w-7 h-7 rounded-full border border-white/15 text-slate-300 shrink-0">
+              <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="faq-panel px-6">
+            <p class="pb-5 text-slate-400 text-[14px] leading-relaxed">
+              You can browse the channel from a browser using Telegram Web, but for instant push notifications on live scores you'll want the free Telegram app on iOS, Android, Windows or macOS.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal glass rounded-2xl overflow-hidden" style="transition-delay:.12s">
+          <button class="faq-trigger w-full flex items-center justify-between gap-4 text-left px-6 py-5">
+            <span class="text-white font-bold text-[15px] sm:text-base">Which matches and leagues are covered?</span>
+            <span class="faq-icon grid place-items-center w-7 h-7 rounded-full border border-white/15 text-slate-300 shrink-0">
+              <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="faq-panel px-6">
+            <p class="pb-5 text-slate-400 text-[14px] leading-relaxed">
+              All international formats (Test, ODI and T20I) plus major franchise leagues — IPL, PSL, BBL, CPL, The Hundred and more. If it's cricket and it's being played, we're covering it.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal glass rounded-2xl overflow-hidden" style="transition-delay:.18s">
+          <button class="faq-trigger w-full flex items-center justify-between gap-4 text-left px-6 py-5">
+            <span class="text-white font-bold text-[15px] sm:text-base">Will I get spammed with notifications?</span>
+            <span class="faq-icon grid place-items-center w-7 h-7 rounded-full border border-white/15 text-slate-300 shrink-0">
+              <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="faq-panel px-6">
+            <p class="pb-5 text-slate-400 text-[14px] leading-relaxed">
+              Never. We only post during live matches and around scheduled fixtures. You can also mute the channel in Telegram and still read everything whenever you like.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal glass rounded-2xl overflow-hidden" style="transition-delay:.24s">
+          <button class="faq-trigger w-full flex items-center justify-between gap-4 text-left px-6 py-5">
+            <span class="text-white font-bold text-[15px] sm:text-base">Can I leave at any time?</span>
+            <span class="faq-icon grid place-items-center w-7 h-7 rounded-full border border-white/15 text-slate-300 shrink-0">
+              <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="faq-panel px-6">
+            <p class="pb-5 text-slate-400 text-[14px] leading-relaxed">
+              Of course. One tap on "Leave Channel" and you're out — no questions, no follow-ups, no hard feelings.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="relative py-16 sm:py-24">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="reveal relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] border border-white/10 px-7 py-14 sm:px-16 sm:py-20 text-center"
+           style="background:linear-gradient(140deg,#0d2a44 0%,#0a1626 45%,#141033 100%);">
+        <div class="absolute -top-24 -left-20 w-72 h-72 rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(42,171,238,.5),transparent 70%);filter:blur(30px)"></div>
+        <div class="absolute -bottom-28 -right-16 w-80 h-80 rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(167,139,250,.45),transparent 70%);filter:blur(30px)"></div>
+
+        <div class="relative">
+          <span class="grid place-items-center w-16 h-16 mx-auto rounded-3xl bg-gradient-to-br from-tg-light to-tg-dark shadow-glow">
+            <svg viewBox="0 0 24 24" class="w-8 h-8 text-white" fill="currentColor"><path d="M21.94 4.3 18.9 19.1c-.23 1.02-.84 1.27-1.7.79l-4.7-3.46-2.27 2.18c-.25.25-.46.46-.94.46l.34-4.8 8.72-7.88c.38-.34-.08-.53-.59-.19L6.98 12.8 2.3 11.34c-1.02-.32-1.04-1.02.21-1.51l17.8-6.86c.85-.32 1.6.2 1.63 1.33Z"/></svg>
+          </span>
+
+          <h2 class="mt-7 text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            Ready for the next match?
+          </h2>
+          <p class="mt-5 text-slate-300/90 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+            Join 120,000+ cricket lovers on Telegram. It takes about three seconds and it costs nothing.
+          </p>
+
+          <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3.5">
+            <a href="https://t.me/Cricketloverstg" target="_blank" rel="noopener"
+               class="btn-primary w-full sm:w-auto text-white font-bold px-8 py-4 rounded-2xl inline-flex items-center justify-center gap-2.5 text-[15px]">
+              Join Cricket Lovers
+              <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#features" class="btn-ghost w-full sm:w-auto glass text-slate-200 font-bold px-8 py-4 rounded-2xl inline-flex items-center justify-center text-[15px] border border-white/10">
+              See what's inside
+            </a>
+          </div>
+
+          <p class="mt-6 text-xs text-slate-500 font-medium break-all">t.me/Cricketloverstg</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="relative z-10 border-t border-white/5 bg-ink-950/70">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+      <a href="#top" class="flex items-center gap-3">
+        <span class="grid place-items-center w-10 h-10 rounded-2xl bg-gradient-to-br from-tg-light to-tg-dark">
+          <svg viewBox="0 0 24 24" class="w-5 h-5 text-white" fill="currentColor"><path d="M21.94 4.3 18.9 19.1c-.23 1.02-.84 1.27-1.7.79l-4.7-3.46-2.27 2.18c-.25.25-.46.46-.94.46l.34-4.8 8.72-7.88c.38-.34-.08-.53-.59-.19L6.98 12.8 2.3 11.34c-1.02-.32-1.04-1.02.21-1.51l17.8-6.86c.85-.32 1.6.2 1.63 1.33Z"/></svg>
+        </span>
+        <span class="leading-tight">
+          <span class="block text-white font-extrabold tracking-tight">Cricket Lovers</span>
+          <span class="block text-[11px] text-slate-500 font-medium">Telegram Channel</span>
+        </span>
+      </a>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-[13px] font-semibold text-slate-400">
+        <a href="#features" class="hover:text-white transition">Features</a>
+        <a href="#inside" class="hover:text-white transition">Inside</a>
+        <a href="#reviews" class="hover:text-white transition">Reviews</a>
+        <a href="#faq" class="hover:text-white transition">FAQ</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="https://t.me/Cricketloverstg" target="_blank" rel="noopener" aria-label="Telegram"
+           class="grid place-items-center w-10 h-10 rounded-xl glass text-slate-300 hover:text-white hover:border-tg-light/50 transition">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"><path d="M21.94 4.3 18.9 19.1c-.23 1.02-.84 1.27-1.7.79l-4.7-3.46-2.27 2.18c-.25.25-.46.46-.94.46l.34-4.8 8.72-7.88c.38-.34-.08-.53-.59-.19L6.98 12.8 2.3 11.34c-1.02-.32-1.04-1.02.21-1.51l17.8-6.86c.85-.32 1.6.2 1.63 1.33Z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-10 pt-7 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <p>© <span id="year"></span> Cricket Lovers. All rights reserved.</p>
+      <p>Not affiliated with Telegram Messenger LLP.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= MOBILE STICKY CTA ================= -->
+<a href="https://t.me/Cricketloverstg" target="_blank" rel="noopener" id="stickyCta"
+   class="sm:hidden fixed bottom-4 left-4 right-4 z-50 btn-primary text-white font-bold py-4 rounded-2xl text-center text-[15px] translate-y-[140%] transition-transform duration-500 ease-out">
+  Join @Cricketloverstg
+</a>
+
+<!-- ================= TOAST ================= -->
+<div id="toast" class="fixed bottom-24 sm:bottom-8 left-1/2 -translate-x-1/2 z-[60] glass px-5 py-3.5 rounded-2xl text-sm font-semibold text-white opacity-0 pointer-events-none transition-all duration-400 translate-y-3">
+  Link copied to clipboard ✅
+</div>
+
+<script>
+(function () {
+  /* ---------- Year ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- Ticker ---------- */
+  const fixtures = [
+    '🏏 IND 248/4 (38.2) · AUS — LIVE',
+    '🔥 Kohli 87* off 71 balls',
+    '📅 PAK vs ENG · 2nd T20I · Fri 7:30 PM',
+    '🎯 Prediction: India win by 3 wickets',
+    '⚡ SA 176/6 (20) · NZ chasing 177',
+    '🏆 IPL Qualifier 1 · Sat 8:00 PM',
+    '📊 Pitch: Fresh surface, 180+ is par'
+  ];
+  const track = document.getElementById('tickerTrack');
+  const makeItems = () => fixtures.map(t =>
+    `<span class="inline-flex items-center gap-2 text-slate-400 hover:text-slate-200 transition-colors duration-300">${t}<span class="text-tg-light/50 ml-8">•</span></span>`
+  ).join('');
+  track.innerHTML = makeItems() + makeItems();
+
+  /* ---------- Navbar scroll state ---------- */
+  const navbar = document.getElementById('navbar');
+  const stickyCta = document.getElementById('stickyCta');
+  const onScroll = () => {
+    const y = window.scrollY;
+    navbar.classList.toggle('nav-scrolled', y > 24);
+    if (stickyCta) {
+      const visible = y > 480 && (y + window.innerHeight) < (document.body.scrollHeight - 120);
+      stickyCta.style.transform = visible ? 'translateY(0)' : 'translateY(140%)';
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Mobile menu ---------- */
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  let menuOpen = false;
+  const setMenu = (open) => {
+    menuOpen = open;
+    mobileMenu.style.maxHeight = open ? mobileMenu.scrollHeight + 'px' : '0px';
+    menuBtn.innerHTML = open
+      ? '<svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>'
+      : '<svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
+  };
+  menuBtn.addEventListener('click', () => setMenu(!menuOpen));
+  document.querySelectorAll('.mob-link, #mobileMenu a').forEach(a =>
+    a.addEventListener('click', () => setMenu(false))
+  );
+  window.addEventListener('resize', () => { if (menuOpen) setMenu(false); });
+
+  /* ---------- Reveal on scroll ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+
+  /* ---------- Counters ---------- */
+  const counters = document.querySelectorAll('.counter');
+  const animateCounter = (el) => {
+    const target = parseFloat(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1600;
+    const start = performance.now();
+    const step = (now) => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const value = Math.floor(eased * target);
+      el.textContent = value.toLocaleString() + suffix;
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = target.toLocaleString() + suffix;
+    };
+    requestAnimationFrame(step);
+  };
+  if ('IntersectionObserver' in window) {
+    const cio = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { animateCounter(e.target); cio.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(el => cio.observe(el));
+  } else {
+    counters.forEach(animateCounter);
+  }
+
+  /* ---------- FAQ accordion ---------- */
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const trigger = item.querySelector('.faq-trigger');
+    const panel = item.querySelector('.faq-panel');
+    trigger.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(other => {
+        other.classList.remove('open');
+        other.querySelector('.faq-panel').style.maxHeight = '0px';
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    });
+  });
+
+  /* ---------- Copy invite link ---------- */
+  const copyBtn = document.getElementById('copyBtn');
+  const copyLabel = document.getElementById('copyLabel');
+  const toast = document.getElementById('toast');
+  const showToast = (msg) => {
+    toast.textContent = msg;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translate(-50%, 0)';
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translate(-50%, 12px)';
+    }, 2200);
+  };
+  copyBtn.addEventListener('click', async () => {
+    const link = 'https://t.me/Cricketloverstg';
+    try {
+      await navigator.clipboard.writeText(link);
+      copyLabel.textContent = 'Copied!';
+      showToast('Link copied to clipboard ✅');
+    } catch (err) {
+      const ta = document.createElement('textarea');
+      ta.value = link;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); copyLabel.textContent = 'Copied!'; showToast('Link copied to clipboard ✅'); }
+      catch (e) { showToast('Copy failed — link: t.me/Cricketloverstg'); }
+      document.body.removeChild(ta);
+    }
+    setTimeout(() => { copyLabel.textContent = 'Copy invite link'; }, 2000);
+  });
+
+  /* ---------- Smooth anchor scrolling with header offset ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const id = this.getAttribute('href');
+      if (id === '#' || id.length < 2) return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - 84;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+})();
+</script>
+</body>
+</html>
